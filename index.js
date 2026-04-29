@@ -51,4 +51,38 @@ const AddtoCard = (index) => {
   console.log(cart);
 
   document.getElementById("cart_count").innerText = cart.length;
+
+  renderCart();
 };
+function renderCart() {
+  const container = document.querySelector(
+    "#offcanvasScrolling .offcanvas-body",
+  );
+
+  container.innerHTML = "";
+
+  if (cart.length === 0) {
+    container.innerHTML = `<p class="text-muted">Cart is empty</p>`;
+    return;
+  }
+
+  cart.forEach((item, index) => {
+    container.innerHTML += `
+            <div class="cart-item d-flex align-items-center gap-3 p-2 border-bottom">
+
+                <img src="${item.image}" class="cart-img">
+
+                <div class="flex-grow-1">
+                    <h6 class="mb-1">${item.name}</h6>
+                    <small class="text-muted">$${item.price}</small>
+                </div>
+
+                <button class="btn btn-sm btn-danger"
+                    onclick="removeFromCart(${index})">
+                    <i class="bi bi-trash"></i>
+                </button>
+
+            </div>
+        `;
+  });
+}
