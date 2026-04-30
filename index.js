@@ -47,12 +47,8 @@ const AddtoCard = (index) => {
   const product = Product_array[index];
 
   cart.push(product);
-
-  console.log(cart);
-
-  document.getElementById("cart_count").innerText = cart.length;
-
   renderCart();
+  document.getElementById("cart_count").innerHTML = cart.length;
 };
 function renderCart() {
   const container = document.querySelector(
@@ -86,3 +82,4 @@ function renderCart() {
         `;
   });
 }
+
