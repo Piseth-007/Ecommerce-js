@@ -47,7 +47,7 @@
                     </ul>
 
                     <form class="d-flex position-relative mt-3 gap-3 mt-lg-0 align-items-center">
-                        <input class="form-control" type="search" placeholder="Search">
+                        <input class="form-control" type="search" id="search" placeholder="Search">
 
                         <div class="cart-wrapper">
                             <i class="bi bi-cart-dash-fill text-black fs-4" data-bs-toggle="offcanvas"
@@ -67,8 +67,8 @@
             <h5 class="offcanvas-title" id="offcanvasScrollingLabel">Cart-Items</h5>
             <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
         </div>
-        <div class="offcanvas-body">
-            <p>Try scrolling the rest of the page to see this option in action.</p>
+        <div class="offcanvas-body" id="offcanvas-body">
+            
         </div>
     </div>
 
@@ -99,7 +99,7 @@
     <!-- ===== PRODUCTS ===== -->
     <div class="container py-5">
 
-        <h2 class="mb-4">💻 All Products</h2>
+        <h2 class="mb-4"> All Products</h2>
 
         <div class="row g-4" id="show-product">
 
@@ -169,5 +169,5 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
 
 </body>
-<script src="index.js"></script>
+<script src="menu.js"></script>
 </html>
