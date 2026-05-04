@@ -1,8 +1,9 @@
 let Product_array = [];
 let cart = [];
 
-fetch("https://thoenthonny.github.io/data-json-computer/?fbclid=IwY2xjawRe0G1leHRuA2FlbQIxMABicmlkETFTc0dicTM2MTI5VFV6cVJqc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtoOmF1hwBFdoK9WyNLhd-hqUKaGtjCVei2MzQ5gA3k9Cu6ILLEuG5HrtAxx_aem_moNiMGXFtdAPq0PdtBd5Fg")
-
+fetch(
+  "https://thoenthonny.github.io/data-json-computer/?fbclid=IwY2xjawRe0G1leHRuA2FlbQIxMABicmlkETFTc0dicTM2MTI5VFV6cVJqc3J0YwZhcHBfaWQQMjIyMDM5MTc4ODIwMDg5MgABHtoOmF1hwBFdoK9WyNLhd-hqUKaGtjCVei2MzQ5gA3k9Cu6ILLEuG5HrtAxx_aem_moNiMGXFtdAPq0PdtBd5Fg",
+)
   .then((res) => res.json())
   .then((product) => {
     Product_array = product;
@@ -38,6 +39,11 @@ const AddtoCard = (id) => {
   const product = Product_array.find((p) => p.id === id);
 
   cart.push(product);
+  Swal.fire({
+  title:"Add  "+ product.name+ "  To card",
+  icon: "success",
+  draggable: true
+});
 
   renderCart();
   document.getElementById("cart_count").innerHTML = cart.length;
@@ -68,8 +74,26 @@ function renderCart() {
       </div>
     `;
   });
-}
+  let total = cart.reduce((sum, item) => sum + Number(item.price), 0);
 
+  container.innerHTML += `
+  <div class="mt-3">
+    <button class="btn btn-success w-100" onclick="checkout()">
+      Check Out - $${total.toFixed(2)}
+    </button>
+  </div>
+`;
+}
+function checkout(){
+  Swal.fire({
+  title: "Check Out success!",
+  icon: "success",
+  draggable: true
+});
+
+  cart = [];
+  renderCart();
+}
 function removeFromCart(index) {
   cart.splice(index, 1);
   renderCart();
@@ -89,7 +113,7 @@ document.getElementById("search").addEventListener("input", function (e) {
   });
 
   if (result.length > 0) {
-    Display(result); 
+    Display(result);
   } else {
     document.getElementById("show-product").innerHTML =
       `<p class="text-center text-muted mt-4">No product found</p>`;
